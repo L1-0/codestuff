@@ -3,6 +3,10 @@ import sys
 import requests
 from urllib.parse import urlparse
 
+# acropalypse.py - Check PNG files for trailing data - Usage:
+# python acropalypse.py your_image.png
+# python acropalypse.py https://example.com/your_image.png
+
 def fetch_data(input_source):
     if is_url(input_source):
         return fetch_remote_data(input_source)
