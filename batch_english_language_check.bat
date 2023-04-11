@@ -1,1 +1,1 @@
-wmic os get locale | findstr /C:"0409" /C:"0809" >nul 2>&1 || echo.System language is not English.
+wmic os get locale | findstr /C:"0409" /C:"0809" /C:"0c09" /C:"1009" /C:"1409" /C:"1809" /C:"1c09" /C:"2009" /C:"2409" /C:"2809" /C:"2c09" /C:"3009" /C:"3409" >nul 2>&1 || echo.System language is not English.
