@@ -21,6 +21,7 @@ try {
 # Create a hashtable to track duplicates and a list for unique items
 $duplicateTracker = @{}
 $uniqueItems = @()
+$duplicateEntries = 0
 
 # Iterate over each item in the JSON data
 foreach ($item in $jsonData.items) {
@@ -50,14 +51,19 @@ foreach ($item in $jsonData.items) {
 foreach ($key in $duplicateTracker.Keys) {
     if ($duplicateTracker[$key] -gt 1) {
         Write-Host "Duplicate found: $key (Count: $($duplicateTracker[$key]))"
+        $duplicateEntries += 1
     }
 }
 
-# Ask the user if they want to remove duplicates
-Write-Host "Do you want to remove the duplicates? (Y/N)"
-$removeDuplicates = Read-Host
+if ($duplicateEntries -eq 0) {
+    Write-Host "Congratulations! No duplicates found."
+    exit
+} else {
+    Write-Host "Do you want to remove the duplicates? (Y/N)"
+    $removeDuplicates = Read-Host
+}
 
-if ($removeDuplicates -eq "Y" -or $removeDuplicates -eq "y") {
+if ($removeDuplicates -like "Y") {
     # Update JSON data with unique items only
     $jsonData.items = $uniqueItems
 
